@@ -10,18 +10,18 @@ import java.util.Arrays;
 public class Grafo {
     public static final int INF = 100000000; // "valor de infinito"
     private int[][] matriz;
-    private int size;
+    private int tamano;
 
     /**
      * Constructor de la clase Grafo
-     * @param size tamaño del grafo
+     * @param tamano tamaño del grafo
      */
-    public Grafo(int size) {
-        this.size = size;
-        matriz = new int[size][size];
-        for (int i = 0; i < size; i++)
+    public Grafo(int tamano) {
+        this.tamano = tamano;
+        matriz = new int[tamano][tamano];
+        for (int i = 0; i < tamano; i++)
             Arrays.fill(matriz[i], INF);
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < tamano; i++)
             matriz[i][i] = 0;
     }
 

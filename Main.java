@@ -47,7 +47,7 @@ public class Main {
                     System.out.print("\n0. Guatemala (A) \n1. Zacapa (B)  \n2. Chiquimula (C) \n3. Quetzaltenango (D) \n4. Coban (E) \n\nIngrese el nodo de destino : ");
                     int destino = sc.nextInt();
     
-                    List<Integer> ruta = FloydWarshall.getPath(origen, destino, next);
+                    List<Integer> ruta = FloydWarshall.obtenerRuta(origen, destino, next);
                     if (ruta != null) {
                         System.out.print("Ruta más corta: ");
                         for (int nodo : ruta) {

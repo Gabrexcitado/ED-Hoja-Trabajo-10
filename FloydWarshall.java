@@ -15,17 +15,17 @@ public class FloydWarshall {
     /**
      * Implementa el algoritmo de Floyd-Warshall para encontrar las distancias
      * @param dist matriz de distancias entre nodos
-     * @param next matriz para almacenar los nodos intermedios en el camino más corto
+     * @param sig matriz para almacenar los nodos intermedios en el camino más corto
      */
-    public static void floydWarshall(int[][] dist, int[][] next) {
+    public static void floydWarshall(int[][] dist, int[][] sig) {
         int V = dist.length;
 
         for (int i = 0; i < V; i++) {
             for (int j = 0; j < V; j++) {
                 if (dist[i][j] != INF && i != j)
-                    next[i][j] = j;
+                    sig[i][j] = j;
                 else
-                    next[i][j] = -1;
+                    sig[i][j] = -1;
             }
         }
 
@@ -35,7 +35,7 @@ public class FloydWarshall {
                     if (dist[i][k] != INF && dist[k][j] != INF) {
                         if (dist[i][j] > dist[i][k] + dist[k][j]) {
                             dist[i][j] = dist[i][k] + dist[k][j];
-                            next[i][j] = next[i][k];
+                            sig[i][j] = sig[i][k];
                         }
                     }
                 }
@@ -47,18 +47,18 @@ public class FloydWarshall {
      * Devuelve la ruta más corta entre dos nodos
      * @param u nodo de origen
      * @param v nodo de destino
-     * @param next matriz que almacena los nodos intermedios 
+     * @param sig matriz que almacena los nodos intermedios 
      * @return lista de nodos en la ruta más corta
      */
-    public static List<Integer> getPath(int u, int v, int[][] next) {
-        if (next[u][v] == -1) return null;
-        List<Integer> path = new ArrayList<>();
-        path.add(u);
+    public static List<Integer> obtenerRuta(int u, int v, int[][] sig) {
+        if (sig[u][v] == -1) return null;
+        List<Integer> ruta = new ArrayList<>();
+        ruta.add(u);
         while (u != v) {
-            u = next[u][v];
-            path.add(u);
+            u = sig[u][v];
+            ruta.add(u);
         }
-        return path;
+        return ruta;
     }
 
     /**
